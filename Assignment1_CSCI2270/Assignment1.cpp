@@ -2,6 +2,9 @@
 // Assignment 1
 // Hoenigman
 
+// This program matches up buyers and sellers of various items according to the messageBoard.txt file. 
+// Be sure to include that file in the command line when running this program! 
+
 #include <iostream>
 #include <string>
 #include <fstream>
