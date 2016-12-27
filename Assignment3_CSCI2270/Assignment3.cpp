@@ -1,5 +1,5 @@
 // Evan Sidrow
-// Assignment 2
+// Assignment 3
 // Hoenigman
 
 // This program builds a linked list of cities which can be 
