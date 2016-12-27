@@ -2,6 +2,9 @@
 // Assignment 2
 // Hoenigman
 
+// This program counts the "n" most used words in a file, minus the 50 most common words in the English language
+// put in the file as the first command line arguement and "n" as the second command line arguement
+
 #include <iostream>
 #include <string>
 #include <fstream>
