@@ -13,8 +13,8 @@
 using namespace std;
 
 struct wordcount{
-    int number;
-    string word;
+	int number;
+	string word;
 };
 
 void BubbleSort(wordcount *array, int arraysize){
@@ -42,12 +42,12 @@ wordcount *doublearray(wordcount *array, int size){
 	wordcount *a1=array;
 	wordcount *a2=array;
 	
-		a2 = new wordcount[size*2];
+	a2 = new wordcount[size*2];
 	
-		for(int i = 0; i < size; i++){
-			a2[i] = a1[i];
-			a2[size+i] = empty;
-		}
+	for(int i = 0; i < size; i++){
+		a2[i] = a1[i];
+		a2[size+i] = empty;
+	}
 	
 	delete[] a1;
 	return a2;
@@ -95,10 +95,10 @@ int main(int argc, char *argv[]){
 	}
 	
 	ifstream inFile;
-    inFile.open(argv[1]);
-    string strLine;
+	inFile.open(argv[1]);
+	string strLine;
     
-    while(!inFile.eof()){
+	while(!inFile.eof()){
 
 		inFile >> strLine;
 		
