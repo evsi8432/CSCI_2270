@@ -14,25 +14,25 @@
 using namespace std;
 
 struct node{
-    string city;
-    string message;
-    node *next;
+	string city;
+	string message;
+	node *next;
 };
 
 node *createlist(string cities[], int numcities){
 	node *x;
-    node *head;
-    x = new node;
+	node *head;
+	x = new node;
 	head = x;
-    int i = 0;
-    while(i < numcities){
+	int i = 0;
+	while(i < numcities){
 		x->city = cities[i];
-        node *n1 = new node;
-        x->next = n1;
-        n1->next = NULL;
-        x = n1;
-        i++;
-    }
+		node *n1 = new node;
+		x->next = n1;
+		n1->next = NULL;
+		x = n1;
+		i++;
+	}
    return head;
 } 
 
@@ -66,9 +66,9 @@ void sendmessage(node *cities){
 	head = cities;
 	
 	ifstream inFile;
-    inFile.open("messageIn.txt");
-    string strLine;
-    bool check = false;
+	inFile.open("messageIn.txt");
+	string strLine;
+	bool check = false;
 
 	while(!inFile.eof()){
 		while(cities->next != NULL){
@@ -144,7 +144,7 @@ int main(){
 	
 	int numcities = 10;
 	int input = 0;
-  string str;
+	string str;
 	
 	node *cities;
 	cities = new node;
@@ -155,12 +155,12 @@ int main(){
 		
 		printmenu();
 		cin >> str;
-    if(str.size() > 1){
-      input = 0;
-    }
-    else{
-      input = atoi(str.c_str());
-    }
+		if(str.size() > 1){
+			input = 0;
+		}
+		else{
+			input = atoi(str.c_str());
+		}
 		cin.ignore();
 		if (input == 1){
 			cities = createlist(startcities, numcities);
@@ -172,7 +172,7 @@ int main(){
 		else if (input == 3){
 			sendmessage(cities);
 		}
-    else if (input == 4){
+		else if (input == 4){
 			string newcity;
 			string oldcity;	
 	
