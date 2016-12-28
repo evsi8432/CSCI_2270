@@ -24,18 +24,16 @@ int main(int argc, char *argv[]){
 //int main(){
 
 	ifstream inFile;
-  inFile.open(argv[1]);
-  string strLine;
-
-  int ranking;
-  string title;
-  int releaseYear;
-  int quantity;
-  MovieTree Tree;
-  int counter;
-  int countlong;
-  
-  while(!inFile.eof()){
+	inFile.open(argv[1]);
+	string strLine;
+	int ranking;
+	string title;
+	int releaseYear;
+	int quantity;
+	MovieTree Tree;
+	int counter;
+	int countlong;
+	while(!inFile.eof()){
 
 		getline(inFile, strLine, ',');
 		ranking = atoi(strLine.c_str());
@@ -53,21 +51,21 @@ int main(int argc, char *argv[]){
 	}
 
 	int input = -1;
-  string str = "";
+	string str = "";
 
-  Tree.opCount++;
-  Tree.isValid(Tree.root);
+	Tree.opCount++;
+	Tree.isValid(Tree.root);
 
 	while(input != 6){
 
 		printmenu();
-    cin >> str;
-    if(str.size() > 1){
-      input = 0;
-    }
-    else{
-      input = atoi(str.c_str());
-    }
+		cin >> str;
+		if(str.size() > 1){
+			input = 0;
+		}
+		else{
+			input = atoi(str.c_str());
+		}
 		cin.ignore();
 
 		if (input == 1){
@@ -98,14 +96,14 @@ int main(int argc, char *argv[]){
 		if (input == 4){
 
 			counter = Tree.countMovieNodes();
-      cout << "There are a total of " << counter << " movies." <<  endl;
+			cout << "There are a total of " << counter << " movies." <<  endl;
 			Tree.counter = 0;
 
 		}
 
 		if (input == 5){
-      countlong = Tree.LongestPath();
-      cout << "The tree is " << countlong << " nodes deep." <<  endl;
+			countlong = Tree.LongestPath();
+			cout << "The tree is " << countlong << " nodes deep." <<  endl;
 		}
 	}
 
