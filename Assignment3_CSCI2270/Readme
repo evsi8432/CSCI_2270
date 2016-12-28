@@ -1,0 +1,14 @@
+This assignment is an introduction to linked lists. It gives the user the option to do the following:
+
+1) Create a linked list of cities which is hard-coded into the .cpp file
+
+2) Print out each of the cities in the order of the linked list
+
+3) Open a file (put in as a command line arguement) and send each word of the file through the linked list. The program
+prints to the termal each time a word reaches a city (node in the linked list)
+
+4) Add a city to the linked list
+
+5) Delete a city from the linked list
+
+6) Delete the entire linked list
