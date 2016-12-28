@@ -1,0 +1,6 @@
+This program takes in a text file of text with no punctuation or capitalization and counts the number of occurances of
+every word in that file. However, the 50 most common words in the English language are ignored. At the end, the program
+outputs the "n" (specified by the user) most common words in the file (ignoring the 50 most common) and the number of 
+occurances of each of those "n" words. It also counts the total number of unique words as well as the overall number of 
+words in the document. The program takes the text file as the first command line arguement and "n" as the second command 
+line arguement.
