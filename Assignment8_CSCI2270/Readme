@@ -1,0 +1,15 @@
+This program creates a graph of locations in the US. The
+program can print all of the cities specified by the file,
+find out which cities are accessable from one another (each
+subgraph is called a "district"), and discover the shortest
+path between any two cities, both by raw distance and number
+of cities visited. The extra credit works only for the
+bestPlaces.txt file and finds the quickest way to travel
+between all of the cities and end up back at the starting
+city.
+
+The user must decide between two files to put as a command
+line arguement: "bestPlaces.txt" and "zombieCities.txt". 
+bestPlaces.txt has edges between all nodes, and
+zombieCities.txt considers a zombie apacolypse where zombies
+make travel between some cities impossible.
