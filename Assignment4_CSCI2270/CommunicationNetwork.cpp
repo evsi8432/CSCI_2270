@@ -113,14 +113,14 @@ void CommunicationNetwork::buildNetwork(){
 	node *x;
 	x = head;
 	x -> previous = NULL;
-    int i = 0;
-    while(i < numcities){
+	int i = 0;
+	while(i < numcities){
 		x->city = startcities[i];
-        node *n1 = new node;
-        x->next = n1;
-        n1->next = NULL;
-        n1->previous = x;
-        if (i == 9){
+		node *n1 = new node;
+		x->next = n1;
+		n1->next = NULL;
+		n1->previous = x;
+		if (i == 9){
 			tail = x;
 		}
         x = n1;
