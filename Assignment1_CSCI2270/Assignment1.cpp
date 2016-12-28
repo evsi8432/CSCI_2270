@@ -14,9 +14,9 @@ using namespace std;
 
 // make a struct to describe what it is that we are selling
 struct item{
-    int price;
-    string object;
-    bool sell;
+	int price;
+	string object;
+	bool sell;
 };
 
 int main(int argc, char *argv[]){
