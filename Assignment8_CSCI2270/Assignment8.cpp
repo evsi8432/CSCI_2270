@@ -19,89 +19,89 @@ void printmenu(){
 
 int main(int argc, char *argv[]){
 
-    ifstream inFile;
-    inFile.open(argv[1]);
-    string strLine;
-    string city;
-    string endcity;
-    int citynum = 0;
-    int weight = 0;
-    int endcitynum = 0;
-    int input = -1;
+    	ifstream inFile;
+    	inFile.open(argv[1]);
+    	string strLine;
+    	string city;
+    	string endcity;
+    	int citynum = 0;
+    	int weight = 0;
+    	int endcitynum = 0;
+    	int input = -1;
 
-    Graph graph;
+    	Graph graph;
 
-    getline(inFile, strLine);
-    stringstream cities(strLine);
-    getline(cities,city,',');
-    while(getline(cities, city, ',')){
-        graph.addVertex(city);
-        citynum++;
-    }
+    	getline(inFile, strLine);
+    	stringstream cities(strLine);
+    	getline(cities,city,',');
+    	while(getline(cities, city, ',')){
+        	graph.addVertex(city);
+        	citynum++;
+    	}
 
-    // go back to the original city
-    citynum = 0;
+    	// go back to the original city
+    	citynum = 0;
 
-    // find each of the other cities NAME from the rest of the file
-    while(getline(inFile,strLine)){
-        stringstream cities(strLine);
-        getline(cities,city,',');
+    	// find each of the other cities NAME from the rest of the file
+    	while(getline(inFile,strLine)){
+        	stringstream cities(strLine);
+        	getline(cities,city,',');
 
-        // get the weight of each other city
-        while(getline(cities, endcity, ',')){
-            weight = atoi(endcity.c_str());
-            if(weight > -1){
-                graph.addEdge(graph.vertices[citynum].name,graph.vertices[endcitynum].name,weight);
-            }
-            endcitynum++;
-        }
-        endcitynum = 0;
-        citynum++;
-    }
+        	// get the weight of each other city
+        	while(getline(cities, endcity, ',')){
+            		weight = atoi(endcity.c_str());
+            		if(weight > -1){
+                		graph.addEdge(graph.vertices[citynum].name,graph.vertices[endcitynum].name,weight);
+            		}
+            		endcitynum++;
+        	}
+        	endcitynum = 0;
+        	citynum++;
+    	}
 
-    string citystart;
-    string cityend;
+    	string citystart;
+    	string cityend;
 
 
-    while(input != 6){
+    	while(input != 6){
 
-        printmenu();
-        cin >> input;
+        	printmenu();
+        	cin >> input;
 		cin.ignore();
 
-        if(input == 1){
-            graph.displayEdges();
-        }
+        	if(input == 1){
+            		graph.displayEdges();
+        	}
 
-        if(input == 2){
-            graph.finddist();
-        }
+        	if(input == 2){
+            		graph.finddist();
+        	}
 
-        if(input == 3){
-            cout << "Enter a starting city:" << endl;
-            getline(cin,citystart);
-            cout << "Enter an ending city:" << endl;
-            getline(cin,cityend);
-            graph.shortpath(cityend,citystart);
-        }
+        	if(input == 3){
+            		cout << "Enter a starting city:" << endl;
+            		getline(cin,citystart);
+            		cout << "Enter an ending city:" << endl;
+            		getline(cin,cityend);
+            		graph.shortpath(cityend,citystart);
+        	}
 
-        if(input == 4){
-            cout << "Enter a starting city:" << endl;
-            getline(cin,citystart);
-            cout << "Enter an ending city:" << endl;
-            getline(cin,cityend);
-            graph.shortdist(cityend,citystart);
-        }
+        	if(input == 4){
+            		cout << "Enter a starting city:" << endl;
+            		getline(cin,citystart);
+            		cout << "Enter an ending city:" << endl;
+            		getline(cin,cityend);
+            		graph.shortdist(cityend,citystart);
+        	}
 
-        if(input == 5){
-            cout << "Enter a starting city:" << endl;
-            getline(cin,citystart);
-            graph.extracredit(citystart);
-        }
-    }
+        	if(input == 5){
+            		cout << "Enter a starting city:" << endl;
+            		getline(cin,citystart);
+            		graph.extracredit(citystart);
+        	}
+    	}
 
-    cout << "Goodbye!" << endl;
-    return 0;
+   	cout << "Goodbye!" << endl;
+    	return 0;
 }
 
 
