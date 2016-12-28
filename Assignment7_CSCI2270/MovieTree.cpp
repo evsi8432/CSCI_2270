@@ -218,7 +218,8 @@ void MovieTree::printMovieInventory(){
 	return;
 }
 
-//////////////////////// new material///////////////////////////////////
+// the following code was not written by me- it is a test function written by
+// someone else
 
 int MovieTree::isValid(MovieNode *node){
     int lh = 0;
@@ -275,6 +276,8 @@ int MovieTree::isValid(MovieNode *node){
     }
 }
 
+// back to my code:
+
 int MovieTree::LongestPath(){
 	int longcount = LongestPath(root);
 	opCount++;
@@ -301,163 +304,163 @@ int MovieTree::LongestPath(MovieNode *node){
 }
 
 void MovieTree::rightrotate(MovieNode *node){
-  MovieNode *x = node;
-  MovieNode *y = x->leftChild;
-  x->leftChild = y->rightChild;
-  if (y->rightChild != nil){
-    y->rightChild->parent = x;
-  }
-  y->parent = x->parent;
-  if (x->parent == nil){
-    root = y;
-  }
-  else if (x == x->parent->leftChild){
-    x->parent->leftChild = y;
-  }
-  else{
-    x->parent->rightChild = y;
-  }
-  y->rightChild = x;
-  x->parent = y;
+	MovieNode *x = node;
+  	MovieNode *y = x->leftChild;
+  	x->leftChild = y->rightChild;
+  	if (y->rightChild != nil){
+    		y->rightChild->parent = x;
+  	}
+ 	y->parent = x->parent;
+ 	if (x->parent == nil){
+    		root = y;
+  	}
+  	else if (x == x->parent->leftChild){
+    		x->parent->leftChild = y;
+  	}
+  	else{
+    		x->parent->rightChild = y;
+  	}
+  	y->rightChild = x;
+  	x->parent = y;
 }
 
 void MovieTree::leftrotate(MovieNode *node){
-  MovieNode *x = node;
-  MovieNode *y = x->rightChild;
-  x->rightChild = y->leftChild;
-  if (y->leftChild != nil){
-    y->leftChild->parent = x;
-  }
-  y->parent = x->parent;
-  if (x->parent == nil){
-    root = y;
-  }
-  else if (x == x->parent->leftChild){
-    x->parent->leftChild = y;
-  }
-  else{
-    x->parent->rightChild = y;
-  }
-  y->leftChild = x;
-  x->parent = y;
+	MovieNode *x = node;
+  	MovieNode *y = x->rightChild;
+  	x->rightChild = y->leftChild;
+  	if (y->leftChild != nil){
+    		y->leftChild->parent = x;
+  	}
+  	y->parent = x->parent;
+  	if (x->parent == nil){
+    		root = y;
+  	}
+  	else if (x == x->parent->leftChild){
+   		 x->parent->leftChild = y;
+  	}
+  	else{
+   		x->parent->rightChild = y;
+  	}
+  	y->leftChild = x;
+  	x->parent = y;
 }
 
 void MovieTree::rbAddFixup(MovieNode *x){
-  MovieNode *y = nil;
-  while ((x != root) and (x->parent->isRed == true)){
-    if (x->parent == x->parent->parent->leftChild ) {
-      y = x->parent->parent->rightChild;
-      if ( y->isRed == true ) {
-        x->parent->isRed = false;
-        y->isRed = false;
-        x->parent->parent->isRed = true;
-        x = x->parent->parent;
-      }
-      else{
-        if ( x == x->parent->rightChild ){
-          x = x->parent;
-          leftrotate(x);
-        }
-        x->parent->isRed = false;
-        x->parent->parent->isRed = true;
-        rightrotate(x->parent->parent);
-      }
-    }
-    else{
-      y = x->parent->parent->leftChild;
-      if(y->isRed == true){
-        x->parent->isRed = false;
-        y->isRed = false;
-        x->parent->parent->isRed = true;
-        x = x->parent->parent;
-      }
-      else{
-        if ( x == x->parent->leftChild ){
-          x = x->parent;
-          rightrotate(x);
-        }
-        x->parent->isRed = false;
-        x->parent->parent->isRed = true;
-        leftrotate(x->parent->parent);
-      }
-    }
-  }
+  	MovieNode *y = nil;
+  	while ((x != root) and (x->parent->isRed == true)){
+    		if (x->parent == x->parent->parent->leftChild ) {
+			y = x->parent->parent->rightChild;
+      			if ( y->isRed == true ) {
+        			x->parent->isRed = false;
+        			y->isRed = false;
+        			x->parent->parent->isRed = true;
+        			x = x->parent->parent;
+      			}
+      			else{
+        			if ( x == x->parent->rightChild ){
+         				x = x->parent;
+          				leftrotate(x);
+        			}
+        			x->parent->isRed = false;
+        			x->parent->parent->isRed = true;
+        			rightrotate(x->parent->parent);
+      			}
+    		}
+    		else{
+      			y = x->parent->parent->leftChild;
+     			if(y->isRed == true){
+        			x->parent->isRed = false;
+        			y->isRed = false;
+        			x->parent->parent->isRed = true;
+        			x = x->parent->parent;
+      			}
+      			else{
+        			if ( x == x->parent->leftChild ){
+         				 x = x->parent;
+          				rightrotate(x);
+        			}
+       				x->parent->isRed = false;
+        			x->parent->parent->isRed = true;
+        			leftrotate(x->parent->parent);
+      			}
+    		}
+  	}
   root->isRed = false;
 }
 
 void MovieTree::rbDeleteFixup(MovieNode *x){
-  MovieNode *w = nil;
-  while((x != root) and (x->isRed = false)){
-    if(x == x->parent->leftChild){
-      w = x->parent->rightChild;
-      if(w->isRed == true){
-        w->isRed = false;
-        x->parent->isRed = true;
-        leftrotate(x->parent);
-        w = x->parent->rightChild;
-      }
-      else if((w->leftChild->isRed == false) and (w->rightChild->isRed == false)){
-        w->isRed = true;
-        x = x->parent;
-      }
-      else{
-        if(w->rightChild->isRed == false){
-          w->leftChild->isRed = false;
-          w->isRed = true;
-          rightrotate(w);
-          w = x->parent->rightChild;
-        }
-        else{
-          w->isRed = x->parent->isRed;
-          x->parent->isRed = false;
-          w->rightChild->isRed = false;
-          leftrotate(x->parent);
-          x = root;
-        }
-      }
-    }
-    else{
-      w = x->parent->leftChild;
-      if(w->isRed == true){
-        w->isRed = false;
-        x->parent->isRed = true;
-        rightrotate(x->parent);
-        w = x->parent->leftChild;
-      }
-      else if((w->rightChild->isRed == false) and (w->leftChild->isRed == false)){
-        w->isRed = true;
-        x = x->parent;
-      }
-      else{
-        if(w->leftChild->isRed == false){
-          w->rightChild->isRed = false;
-          w->isRed = true;
-          leftrotate(w);
-          w = x->parent->leftChild;
-        }
-        else{
-          w->isRed = x->parent->isRed;
-          x->parent->isRed = false;
-          w->leftChild->isRed = false;
-          rightrotate(x->parent);
-          x = root;
-        }
-      }
-    }
-  }
-  x->isRed == false;
+  	MovieNode *w = nil;
+ 	while((x != root) and (x->isRed = false)){
+    		if(x == x->parent->leftChild){
+      			w = x->parent->rightChild;
+      			if(w->isRed == true){
+        			w->isRed = false;
+        			x->parent->isRed = true;
+        			leftrotate(x->parent);
+        			w = x->parent->rightChild;
+      			}
+      			else if((w->leftChild->isRed == false) and (w->rightChild->isRed == false)){
+        			w->isRed = true;
+        			x = x->parent;
+      			}
+      			else{
+        			if(w->rightChild->isRed == false){
+          				w->leftChild->isRed = false;
+          				w->isRed = true;
+          				rightrotate(w);
+         				w = x->parent->rightChild;
+        			}
+        			else{
+          				w->isRed = x->parent->isRed;
+          				x->parent->isRed = false;
+          				w->rightChild->isRed = false;
+          				leftrotate(x->parent);
+          				x = root;
+        			}
+      			}
+    		}
+    		else{
+      			w = x->parent->leftChild;
+      			if(w->isRed == true){
+        			w->isRed = false;
+        			x->parent->isRed = true;
+        			rightrotate(x->parent);
+        			w = x->parent->leftChild;
+      			}
+      			else if((w->rightChild->isRed == false) and (w->leftChild->isRed == false)){
+        			w->isRed = true;
+        			x = x->parent;
+      			}
+      			else{
+        			if(w->leftChild->isRed == false){
+          				w->rightChild->isRed = false;
+          				w->isRed = true;
+          				leftrotate(w);
+          				w = x->parent->leftChild;
+        			}
+        			else{
+          				w->isRed = x->parent->isRed;
+          				x->parent->isRed = false;
+          				w->leftChild->isRed = false;
+          				rightrotate(x->parent);
+          				x = root;
+        			}
+      			}
+    		}
+  	}
+	x->isRed == false;
 }
 
 void MovieTree::rbtransplant(MovieNode *u, MovieNode *v){
-  if(u->parent == nil){
-    root = v;
-  }
-  else if(u == u->parent->leftChild){
-    u->parent->leftChild = v;
-  }
-  else{
-    u->parent->rightChild =v;
-  }
-  v->parent = u->parent;
+	if(u->parent == nil){
+    		root = v;
+  	}
+  	else if(u == u->parent->leftChild){
+    		u->parent->leftChild = v;
+  	}
+  	else{
+    		u->parent->rightChild =v;
+  	}
+ 	v->parent = u->parent;
 }
 
