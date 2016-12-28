@@ -31,30 +31,30 @@ MovieTree::~MovieTree(){
 void MovieTree::print(MovieNode *root){
   
 	if(root->leftChild!= nil){
-    print(root->leftChild);
-  }
+		print(root->leftChild);
+	}
   
-  cout << "===========" << endl;
-  cout << "Ranking:" << root->ranking << endl;
-  cout << "Title:" << root->title << endl;
-  cout << "Year:" << root->year << endl;
-  cout << "Quantity:" << root->quantity<< endl;
+	cout << "===========" << endl;
+  	cout << "Ranking:" << root->ranking << endl;
+  	cout << "Title:" << root->title << endl;
+  	cout << "Year:" << root->year << endl;
+	cout << "Quantity:" << root->quantity<< endl;
   
-  if(root->rightChild!=nil){
-    print(root->rightChild);
-  }
+ 	if(root->rightChild!=nil){
+    		print(root->rightChild);
+  	}
   
-  return;
+	return;
   
 }
 
 void MovieTree::addMovieNode(int ranking, string title, int releaseYear, int quantity){
 
-  titles[numtitles] = title;
+	titles[numtitles] = title;
 
-  numtitles++;
+ 	numtitles++;
 
-  opCount++;
+	opCount++;
 
 	MovieNode *x = root;
 	MovieNode *y = NULL;
@@ -91,98 +91,98 @@ void MovieTree::addMovieNode(int ranking, string title, int releaseYear, int qua
 			y->rightChild = n1;
 		}
 	}
-  root->isRed = false;
-  rbAddFixup(n1);
-  isValid(root);
-  return;
+	root->isRed = false;
+	rbAddFixup(n1);
+	isValid(root);
+	return;
 }
 
 void MovieTree::searchMovieTree(MovieNode *x, string title, bool rent, bool del){
-  if(x == nil){
-    cout << "Movie not found." << endl;
-    opCount--;
-    return;
-  }
+	if(x == nil){
+		cout << "Movie not found." << endl;
+		opCount--;
+    		return;
+	}
     
-  else if(x->title == title){
-    if(rent == true){
-      x->quantity += -1;
-      cout << "Movie has been rented." << endl;
-      cout << "Movie Info:" << endl;
-      cout << "===========" << endl;
-      cout << "Ranking:" << x->ranking << endl;
-      cout << "Title:" << x->title << endl;
-      cout << "Year:" << x->year << endl;
-      cout << "Quantity:" << x->quantity<< endl;
-    }
-    ///////////////Delete////////////
-    if((x->quantity == 0) or (del == true)){
+	else if(x->title == title){
+		if(rent == true){
+			x->quantity += -1;
+      			cout << "Movie has been rented." << endl;
+      			cout << "Movie Info:" << endl;
+      			cout << "===========" << endl;
+      			cout << "Ranking:" << x->ranking << endl;
+      			cout << "Title:" << x->title << endl;
+      			cout << "Year:" << x->year << endl;
+      			cout << "Quantity:" << x->quantity<< endl;
+    		}
+    		///////////////Delete////////////
+   		if((x->quantity == 0) or (del == true)){
 
-      if(x->quantity == 0){
-        opCount++;
-      }
+      			if(x->quantity == 0){
+        			opCount++;
+      			}
         
-      MovieNode *y = x;
-      MovieNode *z = x;
-      bool y_org = y->isRed;
-      if(x->leftChild == nil){
-        z = x->rightChild;
-        rbtransplant(x, x->rightChild);
-      }
-      else if(x->rightChild == nil){
-        z = x->leftChild;
-        rbtransplant(x, x->leftChild);
-      }
-      else{
-        y = x->rightChild;
-        while(y->leftChild != nil){
-          y = y->leftChild;
-        }
-        y_org = y->isRed;
-        z = y->rightChild;
-        if(y->parent == x){
-          z->parent = y;
-        }
-        else{
-          rbtransplant(y,y->rightChild);
-          y->rightChild = x->rightChild;
-          y->rightChild->parent = y;
-        }
-        rbtransplant(x,y);
-        y->leftChild = x->leftChild;
-        y->leftChild->parent = y;
-        y->isRed = x->isRed;
-      }
-      if(y_org == false){
-        rbDeleteFixup(z);
-      }
-    }
-  return;
-  }
-  else{
-    if(x->title > title){
-      searchMovieTree(x->leftChild, title, rent, del);
-    }
-    else{
-      searchMovieTree(x->rightChild, title, rent, del);
-    }
-  }
-  return;
+      			MovieNode *y = x;
+      			MovieNode *z = x;
+      			bool y_org = y->isRed;
+      			if(x->leftChild == nil){
+        			z = x->rightChild;
+				rbtransplant(x, x->rightChild);
+      			}
+      			else if(x->rightChild == nil){
+        			z = x->leftChild;
+        			rbtransplant(x, x->leftChild);
+      			}
+      			else{
+        			y = x->rightChild;
+        			while(y->leftChild != nil){
+          				y = y->leftChild;
+       				}
+        			y_org = y->isRed;
+        			z = y->rightChild;
+        			if(y->parent == x){
+          				z->parent = y;
+        			}
+        			else{
+          				rbtransplant(y,y->rightChild);
+          				y->rightChild = x->rightChild;
+          				y->rightChild->parent = y;
+        			}
+        			rbtransplant(x,y);
+        			y->leftChild = x->leftChild;
+        			y->leftChild->parent = y;
+        			y->isRed = x->isRed;
+      			}
+      			if(y_org == false){
+        			rbDeleteFixup(z);
+      			}
+    		}
+		return;
+  	}
+  	else{
+    		if(x->title > title){
+      			searchMovieTree(x->leftChild, title, rent, del);
+    		}
+    		else{
+      			searchMovieTree(x->rightChild, title, rent, del);
+    		}
+	}
+	return;
 }
 
 int MovieTree::countMovieNodes(MovieNode *root){
 	
-  if(root->leftChild != nil){
-    countMovieNodes(root->leftChild);
-  }
+	if(root->leftChild != nil){
+    		countMovieNodes(root->leftChild);
+  	}
     
-  counter++;
+  	counter++;
   
-  if(root->rightChild != nil){
-    countMovieNodes(root->rightChild);
-  }
+  	if(root->rightChild != nil){
+    		countMovieNodes(root->rightChild);
+  	}
   
-  return counter;
+  	return counter;
 }
 
 void MovieTree::findMovie(string title){
@@ -196,7 +196,7 @@ void MovieTree::rentMovie(string title){
 
 void MovieTree::deleteMovieNode(string title){
 	searchMovieTree(root,title, false, true);
-  opCount++;
+	opCount++;
 }
 
 int MovieTree::countMovieNodes(){
@@ -211,11 +211,11 @@ int MovieTree::countMovieNodes(){
 
 void MovieTree::printMovieInventory(){
   
-  print(root);  
+	print(root);  
   
-  opCount++;
+	opCount++;
   
-  return;
+	return;
 }
 
 //////////////////////// new material///////////////////////////////////
@@ -276,9 +276,9 @@ int MovieTree::isValid(MovieNode *node){
 }
 
 int MovieTree::LongestPath(){
-  int longcount = LongestPath(root);
-  opCount++;
-  return longcount;
+	int longcount = LongestPath(root);
+	opCount++;
+	return longcount;
 }
 
 int MovieTree::LongestPath(MovieNode *node){
@@ -286,18 +286,18 @@ int MovieTree::LongestPath(MovieNode *node){
 	int counterleft = 0;
 	int counterright = 0;
 	if(node->leftChild != nil){
-    counterleft = LongestPath(node->leftChild);
-  }
-  if(node->rightChild != nil){
-    counterright = LongestPath(node->rightChild);
-  }
-  if(counterleft > counterright){
-    counter += counterleft;
-  }
-  else{
-    counter += counterright;
-  }
-  return counter;
+		counterleft = LongestPath(node->leftChild);
+	}
+	if(node->rightChild != nil){
+		counterright = LongestPath(node->rightChild);
+	}
+	if(counterleft > counterright){
+		counter += counterleft;
+	}
+	else{
+		counter += counterright;
+	}
+	return counter;
 }
 
 void MovieTree::rightrotate(MovieNode *node){
