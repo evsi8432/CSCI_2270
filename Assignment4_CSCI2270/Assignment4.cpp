@@ -21,9 +21,9 @@ void printmenu(){
 
 int main(){
 	
-    ifstream inFile;
-    inFile.open("messageIn.txt");
-    string strLine;
+	ifstream inFile;
+	inFile.open("messageIn.txt");
+	string strLine;
 	
 	CommunicationNetwork Network(10);
 	
@@ -33,12 +33,12 @@ int main(){
 	while(input != 7){
 		
 		printmenu();
-    	cin >> str;
-    	if(str.size() > 1){
-      		input = 0;
-    	}
-    	else{
-     		input = atoi(str.c_str());
+		cin >> str;
+		if(str.size() > 1){
+      			input = 0;
+		}
+		else{
+			input = atoi(str.c_str());
 		}
 		cin.ignore();
 		
