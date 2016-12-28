@@ -21,25 +21,25 @@ void printmenu(){
 
 int main(){
 	
-	ifstream inFile;
+    ifstream inFile;
     inFile.open("messageIn.txt");
     string strLine;
 	
 	CommunicationNetwork Network(10);
 	
 	int input = 0;
-  string str = "";
+	string str = "";
 	
 	while(input != 7){
 		
 		printmenu();
-    cin >> str;
-    if(str.size() > 1){
-      input = 0;
-    }
-    else{
-      input = atoi(str.c_str());
-    }
+    	cin >> str;
+    	if(str.size() > 1){
+      		input = 0;
+    	}
+    	else{
+     		input = atoi(str.c_str());
+		}
 		cin.ignore();
 		
 		if (input == 1){
