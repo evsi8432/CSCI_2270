@@ -1,0 +1,11 @@
+This program creates a FIFO Queue implimented as a ten member
+array which sends messages to a list of cities. The cities
+are hard-coded into the C++ file. The message comes from the
+"messageIn.txt" file. The user has the option to Enqueue or
+Dequeue words from the file one word at a time or can send the
+entire message all at once. Dequeueing a word sends it to all
+of the cities and then back again. 
+
+Note that the cities are as nodes in a linked list, and
+messages traverse the linked list forwards and then back again
+once they are dequeued from the array.

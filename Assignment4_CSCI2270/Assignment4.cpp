@@ -22,24 +22,24 @@ void printmenu(){
 int main(){
 	
 	ifstream inFile;
-	inFile.open("messageIn.txt");
-	string strLine;
+    inFile.open("messageIn.txt");
+    string strLine;
 	
 	CommunicationNetwork Network(10);
 	
 	int input = 0;
-	string str = "";
+  string str = "";
 	
 	while(input != 7){
 		
 		printmenu();
-		cin >> str;
-		if(str.size() > 1){
-      			input = 0;
-		}
-		else{
-			input = atoi(str.c_str());
-		}
+    cin >> str;
+    if(str.size() > 1){
+      input = 0;
+    }
+    else{
+      input = atoi(str.c_str());
+    }
 		cin.ignore();
 		
 		if (input == 1){
@@ -70,11 +70,9 @@ int main(){
 		if (input == 6){
 			inFile.close();
 			inFile.open("messageIn.txt");
-			while(!inFile.eof()){
+			while(!inFile.eof() and Network.pathMade()){
 				inFile >> strLine; 
-				if(!inFile.eof()){
-					Network.transmitMsg(strLine);
-				}
+        Network.transmitMsg(strLine);
 			}
 			while(!Network.queueIsEmpty()){
 				Network.dequeue();

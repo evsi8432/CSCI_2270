@@ -13,29 +13,39 @@ CommunicationNetwork::CommunicationNetwork(int qs) {
 	queueTail = 0;
 	head = new node;
 	path = false;
-	warning = false;
+	full = false;
 } 
 
 CommunicationNetwork::~CommunicationNetwork(){
 	delete[] arrayQueue;
 }
 
-void CommunicationNetwork::enqueue(string x){
-		if(queueTail == queueSize-1){
-			arrayQueue[queueTail] = x;
-			queueTail = 0;
-		}
-		else{
-			arrayQueue[queueTail] = x;
-			queueTail ++;
-		}
-	if((queueTail == queueHead-1)or(queueTail == 8)){
-		warning = true;
+bool CommunicationNetwork::pathMade(){
+	if(!path){
+		cout<< "Build a network before attempting to transmit a message" <<endl;
 	}
+	return path;
+}
+
+void CommunicationNetwork::enqueue(string x){
+  
+  arrayQueue[queueTail] = x;
+  
+  if(queueTail == queueSize-1){
+    queueTail = 0;
+	}
+	else{
+		queueTail++;
+	}
+	
+  if(queueTail == queueHead){
+    full = true;
+  }
 	
 	cout << "E: " << x << endl;
 	cout << "H: " << queueHead << endl;	
 	cout << "T: " << queueTail << endl;	
+	cout << full << endl;
 
 }
 
@@ -77,8 +87,8 @@ else{
 		x = x -> previous;
 	}
 	cout<< x->city <<" received "<< x->message <<endl;	
+	full = false;
 }
-	warning = false;
 }
 
 
@@ -86,20 +96,17 @@ void CommunicationNetwork::printQueue(){
 	
 	int head = queueHead;
 	int tail = queueTail;
-	bool again = warning;
+	bool again = full;
 	
 	while(head != tail or again == true){
 		cout<<head<< ": " << arrayQueue[head]<<endl;
-		if(queueHead == queueSize){
+		if(head == queueSize - 1){
 			head = 0;
 		}
 		else{
-			head ++;
+			head++;
 		}
-		if (again == true){
-			again = false;
-			tail = 10;
-		}
+		again = false;
 	}
 }
 
@@ -113,14 +120,14 @@ void CommunicationNetwork::buildNetwork(){
 	node *x;
 	x = head;
 	x -> previous = NULL;
-	int i = 0;
-	while(i < numcities){
+    int i = 0;
+    while(i < numcities){
 		x->city = startcities[i];
-		node *n1 = new node;
-		x->next = n1;
-		n1->next = NULL;
-		n1->previous = x;
-		if (i == 9){
+        node *n1 = new node;
+        x->next = n1;
+        n1->next = NULL;
+        n1->previous = x;
+        if (i == 9){
 			tail = x;
 		}
         x = n1;
@@ -144,7 +151,7 @@ void CommunicationNetwork::printPath(){
 }
 
 bool CommunicationNetwork::queueIsFull(){
-	if((queueTail == queueHead)and(warning == true)){
+	if((queueTail == queueHead) and (full == true)){
 		return true;
 	}
 	else{
@@ -153,7 +160,7 @@ bool CommunicationNetwork::queueIsFull(){
 }
 
 bool CommunicationNetwork::queueIsEmpty(){ 
-	if((queueTail == queueHead)and(warning == false)){
+	if((queueTail == queueHead) and (full == false)){
 		return true;
 	}
 	else{
@@ -162,11 +169,10 @@ bool CommunicationNetwork::queueIsEmpty(){
 }
 
 void CommunicationNetwork::transmitMsg(string word){
-	bool full = queueIsFull();
-	if(full){
-		while(!queueIsEmpty()){
+	enqueue(word);
+	if(queueIsFull()){
+		while(!queueIsEmpty() and path){
 			dequeue();
 		}
 	}
-	enqueue(word);
 }

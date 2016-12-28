@@ -24,6 +24,7 @@ class CommunicationNetwork
         void printPath();
         bool queueIsFull(); //send when full
         bool queueIsEmpty();
+        bool pathMade();
         void transmitMsg(std::string);
 
     protected:
@@ -36,7 +37,7 @@ class CommunicationNetwork
         int queueTail;
         std::string *arrayQueue;
         bool path;
-        bool warning;
+        bool full;
 };
 
 #endif // COMMUNICATIONNETWORK_H
