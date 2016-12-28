@@ -1,0 +1,5 @@
+This program takes in a text file of items which are either for sale or wanted and matches up buyers and sellers.
+It does so by adding each item to an array and checking to see if a buyer and sell of the same object are willing
+to agree on a price. Once a buyer and sell are matched up, they are removed from the array and the product sold
+is printed out to the terminal. At the end, each remaining item is printed out at the terminal as well. The total
+number of operations required to complete this task is also printed out.
