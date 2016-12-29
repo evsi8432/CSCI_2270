@@ -8,4 +8,6 @@ and count the longest path from the root node to the bottom
 of the tree.
 
 Note: there is a bug in the code which results in a black node
-height violation when deleting some movies.
+height violation when deleting some movies. Also note that
+there is no assignment 5 or 6 because this assignment built
+off of those two assignments.
