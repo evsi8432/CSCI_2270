@@ -29,18 +29,18 @@ bool CommunicationNetwork::pathMade(){
 
 void CommunicationNetwork::enqueue(string x){
   
-  arrayQueue[queueTail] = x;
+  	arrayQueue[queueTail] = x;
   
-  if(queueTail == queueSize-1){
-    queueTail = 0;
+  	if(queueTail == queueSize-1){
+    		queueTail = 0;
 	}
 	else{
 		queueTail++;
 	}
 	
-  if(queueTail == queueHead){
-    full = true;
-  }
+  	if(queueTail == queueHead){
+    		full = true;
+  	}
 	
 	cout << "E: " << x << endl;
 	cout << "H: " << queueHead << endl;	
@@ -51,44 +51,44 @@ void CommunicationNetwork::enqueue(string x){
 
 void CommunicationNetwork::dequeue(){
 
-if(path == false){
-	cout<< "Build a network before attempting to transmit a message" <<endl;
-}
-else if(queueIsEmpty()){
-	cout<< "Queue is empty."<< endl;
-}
-else{
-
-	string temp = arrayQueue[queueHead];
-	
-	if(queueHead == queueSize-1){
-		queueHead = 0;
+	if(path == false){
+		cout<< "Build a network before attempting to transmit a message" <<endl;
+	}
+	else if(queueIsEmpty()){
+		cout<< "Queue is empty."<< endl;
 	}
 	else{
-		queueHead++;
-	}
 
-	cout << "H: " << queueHead << endl;	
-	cout << "T: " << queueTail << endl;	
+		string temp = arrayQueue[queueHead];
 	
-	node *x;
-	x = head;
+		if(queueHead == queueSize-1){
+			queueHead = 0;
+		}
+		else{
+			queueHead++;
+		}
 
-	while(x->next != NULL){
-		x -> message = temp;
-		cout<< x->city <<" received "<< x->message <<endl;
-		x = x-> next;
+		cout << "H: " << queueHead << endl;	
+		cout << "T: " << queueTail << endl;	
+	
+		node *x;
+		x = head;
+
+		while(x->next != NULL){
+			x -> message = temp;
+			cout<< x->city <<" received "<< x->message <<endl;
+			x = x-> next;
+		}
+		x = x->previous;
+		x = x->previous;
+		while(x->previous != NULL){
+			x -> message = temp;
+			cout<< x->city <<" received "<< x->message <<endl;
+			x = x -> previous;
+		}
+		cout<< x->city <<" received "<< x->message <<endl;	
+		full = false;
 	}
-	x = x->previous;
-	x = x->previous;
-	while(x->previous != NULL){
-		x -> message = temp;
-		cout<< x->city <<" received "<< x->message <<endl;
-		x = x -> previous;
-	}
-	cout<< x->city <<" received "<< x->message <<endl;	
-	full = false;
-}
 }
 
 
@@ -120,20 +120,20 @@ void CommunicationNetwork::buildNetwork(){
 	node *x;
 	x = head;
 	x -> previous = NULL;
-    int i = 0;
-    while(i < numcities){
+	int i = 0;
+	while(i < numcities){
 		x->city = startcities[i];
-        node *n1 = new node;
-        x->next = n1;
-        n1->next = NULL;
-        n1->previous = x;
-        if (i == 9){
+	        node *n1 = new node;
+		x->next = n1;
+        	n1->next = NULL;
+        	n1->previous = x;
+        	if (i == 9){
 			tail = x;
 		}
-        x = n1;
-        i++;
-    }
-    path = true;
+        	x = n1;
+        	i++;
+	}
+   	path = true;
 } 
 
 void CommunicationNetwork::printPath(){
