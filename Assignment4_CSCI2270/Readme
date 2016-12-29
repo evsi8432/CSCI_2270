@@ -6,6 +6,6 @@ Dequeue words from the file one word at a time or can send the
 entire message all at once. Dequeueing a word sends it to all
 of the cities and then back again. 
 
-Note that the cities are nodes in a linked list, and
+Note that the cities are as nodes in a linked list, and
 messages traverse the linked list forwards and then back again
 once they are dequeued from the array.
